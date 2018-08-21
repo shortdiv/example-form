@@ -1,0 +1,51 @@
+{
+  "name": "jollof-wars",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "buildFunc": "netlify-lambda publish functions",
+    "serve": "vue-cli-service serve",
+    "build": "npm run buildFunc && vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "netlify-lambda": "^0.4.0",
+    "path": "^0.12.7",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1"
+  },
+  "devDependencies": {
+    "@prerenderer/renderer-jsdom": "^0.1.4",
+    "@vue/cli-plugin-babel": "^3.0.0-rc.12",
+    "@vue/cli-plugin-eslint": "^3.0.0-rc.12",
+    "@vue/cli-service": "^3.0.0-rc.12",
+    "dotenv": "^6.0.0",
+    "firebase": "^5.3.1",
+    "prerender-spa-plugin": "^3.0.0-beta.2",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
