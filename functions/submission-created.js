@@ -1,10 +1,22 @@
 /* Triggered when a form submission is posted to your site. */
-var initDB = require('../utils/storage')
+import firebase from "firebase";
+import "firebase/storage";
 
 exports.handler = function(event, context, callback) {
-  var db = initDB()
-  var newPostKey = db.ref().child('submissions').push().key;
-  db.ref(`submissions/${newPostKey}`).set({
+  var config = {
+    apiKey: `${process.env.VUE_APP_API_KEY}`,
+    authDomain: `${process.env.VUE_APP_PROJECT_ID}.firebaseapp.com`,
+    databaseURL: `https://${process.env.VUE_APP_DB_NAME}.firebaseio.com`,
+    storageBucket: `${process.env.VUE_APP_BUCKET}.appspot.com`,
+    messagingSenderId: `${process.env.VUE_APP_SENDER_ID}`
+  };
+
+  firebase.initializeApp(config);
+
+  var db = firebase.database();
+
+  var newPostKey = db.ref().child(`${this.form.chosenRice}`).push().key;
+  db.ref(`${this.form.chosenRice}/${newPostKey}`).set({
     ...this.form
   });
   return callback(null, {
