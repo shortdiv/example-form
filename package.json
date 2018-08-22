@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "runFunc": "netlify-lambda serve functions",
     "buildFunc": "netlify-lambda build functions",
     "serve": "vue-cli-service serve",
     "build": "npm run buildFunc && vue-cli-service build",
