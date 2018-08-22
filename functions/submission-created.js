@@ -15,10 +15,8 @@ const db = firebase.database();
 
 exports.handler = function(event, context, callback) {
   const body = JSON.parse(event.body).payload
-  var newPostKey = db.ref().child(`submissions`).push().key;
-  db.ref(`submissions/${newPostKey}`).set({
-    ...body.data,
-    data: body.created_at
+  new Promise((resolve, reject) => {
+    setTimeout(resolve, 100, '1')
   })
   .then(() => {
     console.log('saved')
