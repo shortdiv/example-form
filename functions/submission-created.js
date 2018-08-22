@@ -1,6 +1,6 @@
 /* Triggered when a form submission is posted to your site. */
 exports.handler = function(event, context, callback) {
-  console.log('event', event)
+  console.log('event', JSON.parse(event.body))
   new Promise((resolve, reject) =>{
     setTimeout(resolve, 100, context)
   })
