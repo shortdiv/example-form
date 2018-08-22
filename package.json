@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "buildFunc": "netlify-lambda publish functions",
+    "buildFunc": "netlify-lambda build functions",
     "serve": "vue-cli-service serve",
     "build": "npm run buildFunc && vue-cli-service build",
     "lint": "vue-cli-service lint"

@@ -27,13 +27,12 @@
     name: 'JollofForm',
     data () {
       return {
+        db: null,
         jollofTypes: ['Ghanaian Jollof', 'Nigerian Jollof', 'Senegal Jollof'],
         form: {
           chosenRice: "Senegal Jollof"
         },
       }
-    },
-    mounted () {
     },
     methods: {
       encode (data) {
