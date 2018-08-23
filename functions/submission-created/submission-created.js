@@ -1,6 +1,6 @@
 /* Triggered when a form submission is posted to your site. */
-import firebase from "firebase";
-import "firebase/storage";
+var firebase = require("firebase");
+require("firebase/storage");
 require("dotenv").config()
 
 const config = {
