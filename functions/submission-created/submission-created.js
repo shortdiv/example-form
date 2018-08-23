@@ -1,6 +1,5 @@
 /* Triggered when a form submission is posted to your site. */
 var firebase = require("firebase");
-require("firebase/storage");
 require("dotenv").config()
 
 const config = {
