@@ -18,22 +18,22 @@ exports.handler = function(event, context, callback) {
   var newPostKey = db.ref().child(`submissions`).push().key;
   db.ref(`submissions/${newPostKey}`).set({
     body
-  })
-  .then(() => {
-    console.log('saved')
-    return callback(null, {
-      statusCode: 200,
-      body: "Beep, boop, you just got serverless."
-    })
-  })
-  .catch((err) => {
-    console.log('failed')
-    return callback(null, {
-      statusCode: error.status,
-      body: JSON.stringify({
-        message: error.message,
-        error: error,
+  }, function(err) {
+    if (err) {
+      console.log('failed')
+      return callback(null, {
+        statusCode: error.status,
+        body: JSON.stringify({
+          message: error.message,
+          error: error,
+        })
       })
-    })
+    } else {
+      console.log('saved')
+      return callback(null, {
+        statusCode: 200,
+        body: "Beep, boop, you just got serverless."
+      })
+    }
   })
 }
