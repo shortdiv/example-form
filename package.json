@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf functions-build && mkdir functions-build",
-    "prezip": "cd functions/submission-created && npm install",
-    "zip": "npx zip -r submission-created.zip *",
+    "prezip": "cd functions/submission-created && yarn",
+    "zip": "zip -r submission-created.zip *",
     "postzip": "mv functions/submission-created/submission-created.zip functions-build",
     "runFunc": "netlify-lambda serve functions",
     "buildFunc": "netlify-lambda build functions",
