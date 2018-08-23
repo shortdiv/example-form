@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf functions-build && mkdir functions-build",
-    "zip": "cd functions/submission-created && npm install && ./node_modules/.bin/zip -r submission-created.zip *",
+    "zip": "cd functions/submission-created && npm install && ./node_modules/.bin/bestzip -r submission-created.zip *",
     "postzip": "mv functions/submission-created/submission-created.zip functions-build",
     "runFunc": "netlify-lambda serve functions",
     "buildFunc": "netlify-lambda build functions",
@@ -14,11 +14,11 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "bestzip": "^1.1.5",
     "netlify-lambda": "^0.4.0",
     "path": "^0.12.7",
     "vue": "^2.5.17",
-    "vue-router": "^3.0.1",
-    "zip": "^1.2.0"
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "@prerenderer/renderer-jsdom": "^0.1.4",
