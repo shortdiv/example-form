@@ -3,17 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "clean": "rm -rf functions-build && mkdir functions-build",
+    "zip": "cd functions/submission-created && npm install && ./node_modules/.bin/zip -r submission-created.zip *",
+    "postzip": "mv functions/submission-created/submission-created.zip functions-build",
     "runFunc": "netlify-lambda serve functions",
     "buildFunc": "netlify-lambda build functions",
     "serve": "vue-cli-service serve",
-    "build": "npm run buildFunc && vue-cli-service build",
+    "prebuild": "npm run clean && npm run zip",
+    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "netlify-lambda": "^0.4.0",
     "path": "^0.12.7",
     "vue": "^2.5.17",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "zip": "^1.2.0"
   },
   "devDependencies": {
     "@prerenderer/renderer-jsdom": "^0.1.4",

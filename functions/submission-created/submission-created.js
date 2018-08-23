@@ -1,8 +1,9 @@
 /* Triggered when a form submission is posted to your site. */
 import firebase from "firebase";
 import "firebase/storage";
+require("dotenv").config()
 
-var config = {
+const config = {
   apiKey: `${process.env.VUE_APP_API_KEY}`,
   authDomain: `${process.env.VUE_APP_PROJECT_ID}.firebaseapp.com`,
   databaseURL: `https://${process.env.VUE_APP_DB_NAME}.firebaseio.com`,
@@ -14,11 +15,10 @@ firebase.initializeApp(config);
 const db = firebase.database();
 
 exports.handler = function(event, context, callback) {
-  const body = JSON.parse(event.body)
-  console.log(body)
-  var newPostKey = db.ref().child(`${this.form.chosenRice}`).push().key;
-  db.ref(`${this.form.chosenRice}/${newPostKey}`).set({
-    ...this.form
+  const body = JSON.parse(event.body).payload
+  var newPostKey = db.ref().child(`submissions`).push().key;
+  db.ref(`submissions/${newPostKey}`).set({
+    body
   })
   .then(() => {
     console.log('saved')
