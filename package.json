@@ -10,7 +10,7 @@
     "runFunc": "netlify-lambda serve functions",
     "buildFunc": "netlify-lambda build functions",
     "serve": "vue-cli-service serve",
-    "prebuild": "npm run clean && npm run zip && npm run move-other-func",
+    "prebuild": "npm run clean && npm run zip",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
