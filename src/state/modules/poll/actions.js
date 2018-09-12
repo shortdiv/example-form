@@ -28,10 +28,7 @@ const postSubmission = ({ commit }, payload) => {
   // post to firebase handled in functions //
   return axios.post("/", {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: this.encode({
-      "form-name": "jollof-wars",
-      jollof: this.form.chosenRice
-    })
+    body: payload
   });
 };
 
