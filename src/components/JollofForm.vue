@@ -16,9 +16,6 @@
             <span>{{ jollof }}</span>
           </label>
         </li>
-        <li>
-          <span>{{ $store.getters["poll/submissionCounts"] }}</span>
-        </li>
       </ul>
       <button type="submit">Select your fighter</button>
     </form>
@@ -48,10 +45,12 @@ export default {
         .join("&");
     },
     handleSubmit() {
-      this.postSubmission({
-        "form-name": "jollof-wars",
-        jollof: this.form.chosenRice
-      })
+      this.postSubmission(
+        this.encode({
+          "form-name": "jollof-wars",
+          jollof: this.form.chosenRice
+        })
+      )
         .then(res => {
           this.$router.push("thanks");
         })

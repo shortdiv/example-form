@@ -1,5 +1,6 @@
 var firebase = require("firebase");
 import { db } from "./state";
+import axios from "axios";
 
 const init = ({ commit }) => {
   console.log("here");
@@ -25,22 +26,12 @@ const fetchSubmissions = ({ commit }, payload) => {
 
 const postSubmission = ({ commit }, payload) => {
   // post to firebase handled in functions //
-  return new Promise((resolve, reject) => {
-    if (payload) {
-      var newPostKey = db
-        .ref()
-        .child(`submissions`)
-        .push().key;
-      db.ref(`submissions/${newPostKey}`).set({
-        body: {
-          human_fields: {
-            Jollof: payload.jollof
-          }
-        }
-      });
-      resolve(payload);
-    }
-    reject();
+  return axios.post("/", {
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: this.encode({
+      "form-name": "jollof-wars",
+      jollof: this.form.chosenRice
+    })
   });
 };
 
