@@ -46,10 +46,8 @@ export default {
     },
     handleSubmit() {
       this.postSubmission(
-        this.encode({
-          "form-name": "jollof-wars",
-          jollof: this.form.chosenRice
-        })
+        "form-name": "jollof-wars",
+        jollof: this.form.chosenRice
       )
         .then(res => {
           this.$router.push("thanks");
