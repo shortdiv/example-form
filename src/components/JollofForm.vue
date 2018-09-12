@@ -23,41 +23,59 @@
 </template>
 
 <script>
-  export default {
-    name: 'JollofForm',
-    data () {
-      return {
-        db: null,
-        jollofTypes: ['Ghanaian Jollof', 'Nigerian Jollof', 'Senegal Jollof'],
-        form: {
-          chosenRice: "Senegal Jollof"
-        },
+import { mapActions } from "vuex";
+
+export default {
+  name: "JollofForm",
+  data() {
+    return {
+      jollofTypes: ["Ghanaian Jollof", "Nigerian Jollof", "Senegal Jollof"],
+      form: {
+        chosenRice: "Senegal Jollof"
       }
+    };
+  },
+  methods: {
+    ...mapActions("poll", ["fetchSubmissions", "postSubmission"]),
+    encode(data) {
+      return Object.keys(data)
+        .map(
+          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join("&");
     },
-    methods: {
-      encode (data) {
-        return Object.keys(data)
-          .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-          .join('&')
-      },
-      handleSubmit () {
-        fetch('/', {
-          method: 'POST',
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: this.encode({
-            'form-name': 'jollof-wars',
-            'jollof': this.form.chosenRice
-          })
+    handleSubmit() {
+      this.postSubmission({
+        "form-name": "jollof-wars",
+        jollof: this.form.chosenRice
+      })
+        .then(res => {
+          this.$router.push("thanks");
         })
-        .then(() => {
-          this.$router.push('thanks')
-        })
-        .catch(() => {
-          this.$router.push('404')
-        })
-      }
+        .catch(res => {
+          this.$router.push("404");
+        });
+      // fetch("/", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      //   body: this.encode({
+      //     "form-name": "jollof-wars",
+      //     jollof: this.form.chosenRice
+      //   })
+      // }, )
+      //   .then(res => {
+      //     debugger;
+      //     this.postSubmission();
+      //   })
+      //   .catch(() => {
+      //     //this.$router.push("404");
+      //   });
     }
+  },
+  created() {
+    this.fetchSubmissions();
   }
+};
 </script>
 
 <style scoped>
