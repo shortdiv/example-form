@@ -16,6 +16,9 @@
             <span>{{ jollof }}</span>
           </label>
         </li>
+        <li>
+          <span>{{ $store.getters["poll/submissionCounts"] }}</span>
+        </li>
       </ul>
       <button type="submit">Select your fighter</button>
     </form>
@@ -23,7 +26,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "JollofForm",
@@ -50,10 +53,10 @@ export default {
         jollof: this.form.chosenRice
       })
         .then(res => {
-          this.$router.push("thanks");
+          //this.$router.push("thanks");
         })
         .catch(res => {
-          this.$router.push("404");
+          //this.$router.push("404");
         });
       // fetch("/", {
       //   method: "POST",

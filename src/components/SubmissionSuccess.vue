@@ -2,7 +2,7 @@
   <div>
     <h1>Thank you for your submission!</h1>
     <div v-if="hasSubmissions">
-      {{ submissions }}
+      {{ sortSubmissions }}
     </div>
     <router-link to="/">
       <button>Back to form</button>
@@ -11,15 +11,12 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "SubmissionSuccess",
   computed: {
-    ...mapGetters("poll", ["hasSubmissions"]),
-    ...mapState("poll", {
-      submissions: state => state.submissions
-    })
+    ...mapGetters("poll", ["hasSubmissions", "sortSubmissions"])
   }
 };
 </script>
