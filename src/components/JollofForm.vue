@@ -45,10 +45,10 @@ export default {
         .join("&");
     },
     handleSubmit() {
-      this.postSubmission(
+      this.postSubmission({
         "form-name": "jollof-wars",
         jollof: this.form.chosenRice
-      )
+      })
         .then(res => {
           this.$router.push("thanks");
         })
