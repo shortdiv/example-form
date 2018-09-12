@@ -53,10 +53,10 @@ export default {
         jollof: this.form.chosenRice
       })
         .then(res => {
-          //this.$router.push("thanks");
+          this.$router.push("thanks");
         })
         .catch(res => {
-          //this.$router.push("404");
+          this.$router.push("404");
         });
       // fetch("/", {
       //   method: "POST",
@@ -81,12 +81,35 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+button {
+  text-align: center;
+}
 li {
   list-style: none;
+}
+ul {
+  text-align: center;
+  padding: 0;
 }
 span {
   font-size: 1.35em;
   font-weight: 300;
+}
+button {
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1em;
+  outline: none;
+  padding: 10px 37px;
+  background-color: #3eb882;
 }
 </style>

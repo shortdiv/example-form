@@ -1,9 +1,5 @@
 const hasSubmissions = (state, value) => {
-  return (
-    state.submissions["Nigerian"] > 0 ||
-    state.submissions["Senegal"] > 0 ||
-    state.submissions["Ghanaian"] > 0
-  );
+  return Object.keys(state.submissions).length > 0;
 };
 
 const submissionCounts = (state, value) => {
@@ -14,10 +10,6 @@ const submissionCounts = (state, value) => {
       "Senegal Jollof": "Senegal",
       "Ghanaian Jollof": "Ghanaian"
     };
-    if (state.submissions[submissionId].body === undefined) {
-      console.log(state.submissions[submissionId]);
-      console.log(submissionId);
-    }
     riceTypes[
       jollofMap[state.submissions[submissionId].body.human_fields.Jollof]
     ] += 1;
@@ -25,7 +17,12 @@ const submissionCounts = (state, value) => {
   return riceTypes;
 };
 
+const totalSubmissionCount = (state, value) => {
+  return Object.keys(state.submissions).length;
+};
+
 export default {
   hasSubmissions,
-  submissionCounts
+  submissionCounts,
+  totalSubmissionCount
 };
