@@ -37,13 +37,6 @@ export default {
   },
   methods: {
     ...mapActions("poll", ["fetchSubmissions", "postSubmission"]),
-    encode(data) {
-      return Object.keys(data)
-        .map(
-          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-        )
-        .join("&");
-    },
     handleSubmit() {
       this.postSubmission({
         "form-name": "jollof-wars",
@@ -55,21 +48,6 @@ export default {
         .catch(res => {
           this.$router.push("404");
         });
-      // fetch("/", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      //   body: this.encode({
-      //     "form-name": "jollof-wars",
-      //     jollof: this.form.chosenRice
-      //   })
-      // }, )
-      //   .then(res => {
-      //     debugger;
-      //     this.postSubmission();
-      //   })
-      //   .catch(() => {
-      //     //this.$router.push("404");
-      //   });
     }
   },
   created() {
