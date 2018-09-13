@@ -26,9 +26,13 @@ const fetchSubmissions = ({ commit }, payload) => {
 
 const postSubmission = ({ commit }, payload) => {
   // post to firebase handled in functions //
+  const formData = new FormData();
+  for (datakey in payload) {
+    formData.append(datakey, payload[datakey]);
+  }
   return axios.post("/", {
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: payload
+    config: { headers: { "Content-Type": "multipart/form-data" } },
+    body: formData
   });
 };
 
