@@ -23,49 +23,68 @@
 </template>
 
 <script>
-  export default {
-    name: 'JollofForm',
-    data () {
-      return {
-        db: null,
-        jollofTypes: ['Ghanaian Jollof', 'Nigerian Jollof', 'Senegal Jollof'],
-        form: {
-          chosenRice: "Senegal Jollof"
-        },
+import { mapActions, mapGetters } from "vuex";
+
+export default {
+  name: "JollofForm",
+  data() {
+    return {
+      jollofTypes: ["Ghanaian Jollof", "Nigerian Jollof", "Senegal Jollof"],
+      form: {
+        chosenRice: "Senegal Jollof"
       }
-    },
-    methods: {
-      encode (data) {
-        return Object.keys(data)
-          .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-          .join('&')
-      },
-      handleSubmit () {
-        fetch('/', {
-          method: 'POST',
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: this.encode({
-            'form-name': 'jollof-wars',
-            'jollof': this.form.chosenRice
-          })
+    };
+  },
+  methods: {
+    ...mapActions("poll", ["fetchSubmissions", "postSubmission"]),
+    handleSubmit() {
+      this.postSubmission({
+        "form-name": "jollof-wars",
+        jollof: this.form.chosenRice
+      })
+        .then(res => {
+          this.$router.push("thanks");
         })
-        .then(() => {
-          this.$router.push('thanks')
-        })
-        .catch(() => {
-          this.$router.push('404')
-        })
-      }
+        .catch(res => {
+          this.$router.push("404");
+        });
     }
+  },
+  created() {
+    this.fetchSubmissions();
   }
+};
 </script>
 
-<style scoped>
+<style>
+button {
+  text-align: center;
+}
 li {
   list-style: none;
+}
+ul {
+  text-align: center;
+  padding: 0;
 }
 span {
   font-size: 1.35em;
   font-weight: 300;
+}
+button {
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1em;
+  outline: none;
+  padding: 10px 37px;
+  background-color: #3eb882;
 }
 </style>

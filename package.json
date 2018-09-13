@@ -15,13 +15,19 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "netlify-lambda": "^0.4.0",
+    "node-sass": "^4.9.3",
     "path": "^0.12.7",
+    "sass-loader": "^7.1.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
+    "vuex": "^3.0.1",
+    "vuex-router-sync": "^5.0.0",
     "zip": "^1.2.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@prerenderer/renderer-jsdom": "^0.1.4",
     "@vue/cli-plugin-babel": "^3.0.0-rc.12",
     "@vue/cli-plugin-eslint": "^3.0.0-rc.12",

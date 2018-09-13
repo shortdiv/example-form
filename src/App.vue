@@ -1,29 +1,36 @@
 <template>
   <div id="app">
-    <router-view>
-      <JollofForm></JollofForm>
-    </router-view>
+    <router-view />
   </div>
 </template>
 
 <script>
-import JollofForm from './components/JollofForm.vue';
-
 export default {
-  name: 'app',
-  components: {
-    JollofForm
-  }
-}
+  name: "app"
+};
 </script>
 
-<style>
+<style lang="scss">
+ul {
+  list-style: none;
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+body,
+html {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
 }
 </style>
